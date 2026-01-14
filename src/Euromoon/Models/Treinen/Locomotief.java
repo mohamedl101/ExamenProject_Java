@@ -1,45 +1,39 @@
 package Euromoon.Models.Treinen;
 
-/** Elke locomotief heeft een verschillend aantal wagons. Ze hebben sowieso plaats voor 80
- * personen en zijn slechts zichtbaar in eerste of tweede klasse.
+/** Elke locomotief bestaat uit een type model, met elke een verschillend aantal wagons
+ * die ze kunnen dragen.
  */
 public class Locomotief {
     private String type;
     private int maxWagons;
-    private int eersteKlassePlaats;
-    private int tweedeKlassePlaats;
-
 
     // Constructor Locomotief
     public Locomotief(String type, int maxWagons) {
         this.type = type;
         this.maxWagons = maxWagons;
-        this.eersteKlassePlaats = eersteKlassePlaats;
-        this.tweedeKlassePlaats = tweedeKlassePlaats;
     }
 
     // Getters
     public String getType() {return type;}
     public int getMaxWagons() {return maxWagons;}
-    public int getEersteKlassePlaats() {return eersteKlassePlaats;}
-    public int getTweedeKlassePlaats() {return tweedeKlassePlaats;}
 
     @Override
     public String toString() {
-        return type + " (Maximum Wagons: " + maxWagons + ", Zitplaatsen: " + eersteKlassePlaats
-                + " (1ste Klasse)/ " + tweedeKlassePlaats + "(2de Klasse)";
+        return type + " (Maximum Wagons: " + maxWagons;
     }
 
 }
 
+/** Een wagon kan eerste of tweede klasse zijn en bestaan sowieso ALTIJD uit 80 zitplaatsen. */
 class Wagon {
-    private String type;  // eerste of tweedeklasse
-    private int plaatsen;
+    private String type; // 1ste of 2e klasse
+    private final int plaatsen = 80; // ALTIJD 80 zitplaatsen
 
     // Constructor Wagon
-    public Wagon(String type, int plaatsen) {
+    public Wagon(String type) {
+        if (!(type.equals("1e klasse") || type.equals("2e klasse")))
+            throw new IllegalArgumentException("Type kan alleen 1e of 2e klasse zijn");
         this.type = type;
-        this.plaatsen = plaatsen;
     }
 
     // Getters
