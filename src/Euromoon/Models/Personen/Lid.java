@@ -20,4 +20,33 @@ public abstract class Lid extends Persoon{
         return certificaties;
     }
 
+    public boolean isBestuurder() {
+        if (certificaties == null) return false;
+        for (String c : certificaties) {
+            if (c == null) continue;
+            String s = c.trim().toLowerCase();
+            if (s.equals("rijbewijs b1 (personenvervoer)") ||
+                    s.contains("rijbewijs b1") ||
+                    s.contains("personenvervoer") ||
+                    s.contains("bestuurder")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isSteward() {
+        if (certificaties == null) return false;
+        for (String c : certificaties) {
+            if (c == null) continue;
+            String s = c.trim().toLowerCase();
+            if (s.equals("toerisme") ||
+                    s.contains("steward") ||
+                    s.contains("gastvrijheid")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

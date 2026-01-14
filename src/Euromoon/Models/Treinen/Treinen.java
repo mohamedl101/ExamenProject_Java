@@ -17,9 +17,17 @@ public class Treinen {
         this.wagons = new ArrayList<>();
     }
 
+    public Locomotief getLocomotief() {
+        return locomotief;
+    }
+
+    public void setLocomotief(Locomotief locomotief) {
+        this.locomotief = locomotief;
+    }
+
     // Wagonnen toevoegen aan trein
     public boolean addWagon(Wagon wagon) {
-        if (wagons.size() <= locomotief.getMaxWagons()) {
+        if (wagons.size() < locomotief.getMaxWagons()) {
             wagons.add(wagon);
             return true;
         } else {
@@ -62,5 +70,10 @@ public class Treinen {
             plaatsen += wagon.getPlaatsen();
         }
         return plaatsen;
+    }
+
+    @Override
+    public String toString() {
+        return "Trein: locomotief= " + locomotief.toString() + ", wagons=" + wagons.size();
     }
 }
