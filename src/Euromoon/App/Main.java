@@ -14,10 +14,7 @@ import Euromoon.Models.Treinen.Treinen;
 import Euromoon.Models.Reizen.Reizen;
 import Euromoon.Models.Reizen.Ticket;
 
-/**
- * Minimale CLI main die gebruikmaakt van jouw klasse-namen (Reizen, Treinen, etc.).
- * Vervang exact dit bestand in src/Euromoon/App/Main.java
- */
+
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -51,7 +48,7 @@ public class Main {
                     case "4" -> verkoopTicketInteractive(reizen, passagiers);
                     case "5" -> printBoardingListInteractive(reizen);
                     case "0" -> {
-                        System.out.println("Bye.");
+                        System.out.println("Einde");
                         return;
                     }
                     default -> System.out.println("Onbekende optie.");
