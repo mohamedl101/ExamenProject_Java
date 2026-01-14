@@ -9,12 +9,11 @@ import java.util.ArrayList;
 
 public class Treinen {
     private Locomotief locomotief;
-    private List<Wagon> wagons;
+    private final List<Wagon> wagons = new ArrayList<>();
 
     // Constructor
     public Treinen(Locomotief locomotief) {
         this.locomotief = locomotief;
-        this.wagons = new ArrayList<>();
     }
 
     public Locomotief getLocomotief() {
@@ -25,7 +24,7 @@ public class Treinen {
         this.locomotief = locomotief;
     }
 
-    // Wagonnen toevoegen aan trein
+    // Wagons toevoegen aan trein
     public boolean addWagon(Wagon wagon) {
         if (wagons.size() < locomotief.getMaxWagons()) {
             wagons.add(wagon);
@@ -75,5 +74,15 @@ public class Treinen {
     @Override
     public String toString() {
         return "Trein: locomotief= " + locomotief.toString() + ", wagons=" + wagons.size();
+    }
+
+    public boolean addWagonByType(String type) {
+        if (type == null) return false;
+        try {
+            Wagon w = new Wagon(type);
+            return addWagon(w);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 }

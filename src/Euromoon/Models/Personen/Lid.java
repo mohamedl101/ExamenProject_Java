@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Lid extends Persoon{
+public class Lid extends Persoon{
     private List<String> certificaties;
 
     public Lid(String naam, String achternaam, String rijkregisternummer, LocalDate geboortedatum) {
