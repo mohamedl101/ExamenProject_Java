@@ -83,9 +83,9 @@ public class Main {
 
     private static Reizen maakReisInteractive() {
         System.out.println("\n-- Aanmaken reis --");
-        System.out.print("Origin (bv. Brussel): ");
+        System.out.print("Vertrek (bv. Brussel): ");
         String origin = scanner.nextLine().trim();
-        System.out.print("Destination (bv. Parijs): ");
+        System.out.print("Aankomst (bv. Parijs): ");
         String destination = scanner.nextLine().trim();
         System.out.print("Vertrek (YYYY-MM-DDTHH:MM, bv. 2026-03-05T12:30): ");
         String ts = scanner.nextLine().trim();
@@ -150,20 +150,20 @@ public class Main {
         }
 
         // crew toevoegen
-        System.out.print("Wil je crew toevoegen voor deze reis? (j/n): ");
+        System.out.print("Wil je personeelsleden toevoegen voor deze reis? (j/n): ");
         String addCrew = scanner.nextLine().trim().toLowerCase();
         if ("j".equals(addCrew) || "y".equals(addCrew)) {
-            System.out.print("Hoeveel crewleden wil je toevoegen? ");
+            System.out.print("Hoeveel personeelsleden wil je toevoegen? ");
             int c = safeReadInt();
             for (int i = 0; i < c; i++) {
-                System.out.println("-- crewlid " + (i+1) + " --");
+                System.out.println("-- personeelslid " + (i+1) + " --");
                 System.out.print("Voornaam: "); String vn = scanner.nextLine().trim();
                 System.out.print("Achternaam: "); String an = scanner.nextLine().trim();
                 System.out.print("Rijksregisternummer: "); String rrn = scanner.nextLine().trim();
                 System.out.print("Geboortedatum (YYYY-MM-DD): "); String dd = scanner.nextLine().trim();
                 LocalDate gd;
                 try { gd = LocalDate.parse(dd); } catch (DateTimeParseException e) {
-                    System.out.println("Ongeldige datum, sla crewlid over.");
+                    System.out.println("Ongeldige datum, sla personeelslid over.");
                     continue;
                 }
                 // concrete crew object
