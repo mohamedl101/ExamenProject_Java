@@ -83,11 +83,11 @@ public class Main {
 
     private static Reizen maakReisInteractive() {
         System.out.println("\n-- Aanmaken reis --");
-        System.out.print("Vertrek (bv. Brussel): ");
+        System.out.print("Vertrek: ");
         String origin = scanner.nextLine().trim();
-        System.out.print("Aankomst (bv. Parijs): ");
+        System.out.print("Aankomst: ");
         String destination = scanner.nextLine().trim();
-        System.out.print("Vertrek (YYYY-MM-DDTHH:MM, bv. 2026-03-05T12:30): ");
+        System.out.print("Vertrek (YYYY-MM-DDTHH:MM: ");
         String ts = scanner.nextLine().trim();
         LocalDateTime vertrek;
         try {
@@ -176,14 +176,14 @@ public class Main {
                     pl.addCertificaties(cert);
                 }
                 reis.voegTreinLid(pl); // methode bestaat in Reizen.java (compatibel met jouw naamkeuze)
-                System.out.println("Crewlid toegevoegd.");
+                System.out.println("Personeelslid toegevoegd.");
             }
         }
 
         reis.koppelTrein(trein);
         System.out.println("Trein gekoppeld aan reis.");
         if (reis.voldoetPersoneelsLid()) {
-            System.out.println("Crewvereisten zijn voldaan.");
+            System.out.println("Vereisten Personeel zijn voldaan.");
         } else {
             System.out.println("Let op: crewvereisten zijn NIET voldaan (min. 1 bestuurder en 3 stewards).");
         }
