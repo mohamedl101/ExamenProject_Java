@@ -123,7 +123,7 @@ public class Main {
             Locomotief loco = new Locomotief(type, max);
             trein = new Treinen(loco);
 
-            // voeg wagons (via helper in Treinen zodat Main geen toegang tot package-private Wagon nodig heeft)
+            // Toevoegen Wagons
             System.out.print("Hoeveel wagons wil je toevoegen nu? ");
             int aantal = safeReadInt();
             for (int i = 0; i < aantal; i++) {
@@ -149,7 +149,7 @@ public class Main {
             trein = treinen.get(ti);
         }
 
-        // crew toevoegen
+        // Personeelsleden toevoegen
         System.out.print("Wil je personeelsleden toevoegen voor deze reis? (j/n): ");
         String addCrew = scanner.nextLine().trim().toLowerCase();
         if ("j".equals(addCrew) || "y".equals(addCrew)) {
@@ -166,7 +166,7 @@ public class Main {
                     System.out.println("Ongeldige datum, sla personeelslid over.");
                     continue;
                 }
-                // concrete crew object
+
                 Lid pl = new Lid(vn, an, rrn, gd);
                 System.out.print("Aantal certificaties voor dit lid: ");
                 int certs = safeReadInt();
@@ -175,7 +175,7 @@ public class Main {
                     String cert = scanner.nextLine().trim();
                     pl.addCertificaties(cert);
                 }
-                reis.voegTreinLid(pl); // methode bestaat in Reizen.java (compatibel met jouw naamkeuze)
+                reis.voegTreinLid(pl);
                 System.out.println("Personeelslid toegevoegd.");
             }
         }
@@ -189,6 +189,8 @@ public class Main {
         }
     }
 
+
+    // Verkopen van tickets aan passagiers
     private static void verkoopTicketInteractive(List<Reizen> reizen, List<Passagier> passagiers) {
         System.out.println("\n-- Ticket verkopen --");
         if (passagiers.isEmpty()) {
@@ -221,6 +223,9 @@ public class Main {
         }
     }
 
+
+    // Poging Boardinglist maken
+
     private static void printBoardingListInteractive(List<Reizen> reizen) {
         System.out.println("\n-- Afdrukken boardinglijst --");
         if (reizen.isEmpty()) {
@@ -240,7 +245,6 @@ public class Main {
         }
     }
 
-    // helpers
     private static int safeReadIndex(int size) {
         String line = scanner.nextLine().trim();
         try {
