@@ -1,17 +1,18 @@
 package Euromoon.Models.Reizen;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
+import java.io.BufferedWriter;
 
 import Euromoon.Models.Treinen.Treinen;
 import Euromoon.Models.Personen.Lid;
 import Euromoon.Models.Personen.Passagier;
-
 
 public class Reizen {
     private final String vertrek;
@@ -104,7 +105,13 @@ public class Reizen {
     public String printBoardingList() throws IOException {
         String safeOrigin = vertrek.replaceAll("\\s+", "_");
         String safeDest = aankomst.replaceAll("\\s+", "_");
-        String fileName = String.format("%s_%s_%s.txt", safeOrigin, safeDest, vertrekTijd.toString());
+
+        // Timestamp Formaat
+        DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        String ts = vertrekTijd.format(fmt);
+        String tsSafe = ts.replace(":", "-");
+
+        String fileName = String.format("%s_%s_%s.txt", safeOrigin, safeDest, tsSafe);
 
         List<String> lines = new ArrayList<>();
         lines.add("Boardinglijst voor reis: " + vertrek + " -> " + aankomst + " vertrek: " + vertrekTijd);
@@ -119,6 +126,7 @@ public class Reizen {
                     p.getNaam(), p.getAchternaam(), p.getRijkregisternummer(), p.getGeboortedatum(), t.getKlasse());
             lines.add(passagierInfo);
         }
+
         Files.write(Paths.get(fileName), lines, StandardCharsets.UTF_8);
         return fileName;
     }
